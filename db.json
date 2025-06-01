@@ -1,0 +1,137 @@
+{
+  "records": [
+    {
+      "id": 1,
+      "name": "Жданов Вадим",
+      "nickname": "говмак",
+      "age": 20,
+      "role": "smm"
+    },
+    {
+      "id": 2,
+      "name": "Лялина Кристина",
+      "nickname": "кокаколик",
+      "age": 20,
+      "role": "smm"
+    },
+    {
+      "id": 3,
+      "name": "Шилов Евгений",
+      "nickname": "рыжий дьявол",
+      "age": 20,
+      "role": "design"
+    },
+    {
+      "id": 4,
+      "name": "Асаков Максим",
+      "nickname": "потеряшка",
+      "age": 19,
+      "role": "smm"
+    },
+    {
+      "id": 5,
+      "name": "Берюзовская Ярослава",
+      "nickname": "?",
+      "age": 18,
+      "role": "creator"
+    },
+    {
+      "id": 6,
+      "name": "Богачева Евгения",
+      "nickname": "?",
+      "age": 19,
+      "role": "media"
+    },
+    {
+      "id": 7,
+      "name": "Доморацкая Елизавета",
+      "nickname": "а ниче тот факт",
+      "age": 19,
+      "role": "aep"
+    },
+    {
+      "id": 8,
+      "name": "Жуков Даниил",
+      "nickname": "прораб",
+      "age": 19,
+      "role": "aep"
+    },
+    {
+      "id": 9,
+      "name": "Завадская Софья",
+      "nickname": "za наших",
+      "age": 20,
+      "role": "creator"
+    },
+    {
+      "id": 10,
+      "name": "Ишин Марк",
+      "nickname": "?",
+      "age": 18,
+      "role": "creator"
+    },
+    {
+      "id": 11,
+      "name": "Каргаполов Максим",
+      "nickname": "krasnodar sr.",
+      "age": 20,
+      "role": "design"
+    },
+    {
+      "id": 12,
+      "name": "Коканова Екатерина",
+      "nickname": "пока кать",
+      "age": 21,
+      "role": "creator"
+    },
+    {
+      "name": "mmm",
+      "nickname": "mmmm",
+      "age": 18,
+      "role": "design",
+      "id": 13
+    },
+    {
+      "name": "sAAA",
+      "nickname": "aa",
+      "age": 18,
+      "role": "design",
+      "id": 14
+    },
+    {
+      "name": "ssss",
+      "nickname": "ssss",
+      "age": 18,
+      "role": "design",
+      "id": 15
+    },
+    {
+      "name": "fkfkf",
+      "nickname": "fff",
+      "age": 23,
+      "role": "admin",
+      "id": 16
+    },
+    {
+      "name": "mmm",
+      "nickname": "mmmm",
+      "age": 18,
+      "role": "aep",
+      "id": 17
+    },
+    {
+      "name": "hhh",
+      "nickname": "jjjjj",
+      "age": 18,
+      "role": "media",
+      "id": 18
+    },
+    {
+      "name": "Никитос",
+      "nickname": "вввв",
+      "age": 24,
+      "role": "ceo",
+      "id": 19
+    }
+  ]
+}
