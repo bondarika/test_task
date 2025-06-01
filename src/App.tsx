@@ -100,7 +100,6 @@ export const App = observer(() => {
           <RecordTable
             records={records}
             onDelete={handleDelete}
-            // onUpdate={handleUpdate}
           />
         </InfiniteScroll>
       </Box>
@@ -128,7 +127,7 @@ export const App = observer(() => {
           onClick={() => setDialogOpen(true)}
           disabled={columnCount + 1 >= recordStore.maxColumns}
         >
-          Добавить колонку
+          Добавить поле
         </Button>
         <AddColumnForm
           open={dialogOpen}

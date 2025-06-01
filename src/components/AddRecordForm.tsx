@@ -18,7 +18,9 @@ import axios from 'axios';
 import { recordSchema, type RecordFormData } from '../validation/recordSchema';
 import { observer } from 'mobx-react-lite';
 import { recordStore } from '../store/RecordStore';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import AddIcon from '@mui/icons-material/Add';
+import { AddColumnForm } from './AddColumnForm';
 
 type FormData = RecordFormData;
 
@@ -30,6 +32,8 @@ interface AddRecordFormProps {
 
 export const AddRecordForm = observer(
   ({ open, onClose, onSuccess }: AddRecordFormProps) => {
+    const [addColumnOpen, setAddColumnOpen] = useState(false);
+
     const {
       register,
       handleSubmit,
@@ -52,6 +56,11 @@ export const AddRecordForm = observer(
       onSuccess(res.data);
       onClose();
       reset();
+    };
+
+    const handleAddColumn = async (label: string) => {
+      await recordStore.addColumn(label);
+      setAddColumnOpen(false);
     };
 
     return (
@@ -163,11 +172,20 @@ export const AddRecordForm = observer(
                       required
                       error={!!errors[col.key]}
                       helperText={errors[col.key]?.message as string}
-                      type='text'
-                      sx={{mt: 1}}
+                      type="text"
+                      sx={{ mt: 1 }}
                     />
                   );
                 })}
+              <Button
+                variant="outlined"
+                startIcon={<AddIcon />}
+                onClick={() => setAddColumnOpen(true)}
+                sx={{ mt: 2 }}
+                disabled={recordStore.columns.length >= recordStore.maxColumns}
+              >
+                Добавить поле
+              </Button>
             </Box>
           </DialogContent>
           <Box
@@ -189,6 +207,11 @@ export const AddRecordForm = observer(
             </Button>
           </Box>
         </Box>
+        <AddColumnForm
+          open={addColumnOpen}
+          onClose={() => setAddColumnOpen(false)}
+          onAdd={handleAddColumn}
+        />
       </Dialog>
     );
   }
