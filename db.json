@@ -1,0 +1,100 @@
+{
+  "records": [
+    {
+      "id": 1,
+      "name": "Жданов Вадим",
+      "nickname": "говмак",
+      "age": 20,
+      "role": "smm",
+      "zodiacSign": "Овен"
+    },
+    {
+      "id": 2,
+      "name": "Лялина Кристина",
+      "nickname": "кокаколик",
+      "age": 20,
+      "role": "smm",
+      "zodiacSign": "Телец"
+    },
+    {
+      "id": 3,
+      "name": "Шилов Евгений",
+      "nickname": "рыжий дьявол",
+      "age": 20,
+      "role": "design",
+      "zodiacSign": "Близнецы"
+    },
+    {
+      "id": 4,
+      "name": "Асаков Максим",
+      "nickname": "потеряшка",
+      "age": 19,
+      "role": "smm",
+      "zodiacSign": "Рак"
+    },
+    {
+      "id": 5,
+      "name": "Берюзовская Ярослава",
+      "nickname": "?",
+      "age": 18,
+      "role": "creator",
+      "zodiacSign": "Лев"
+    },
+    {
+      "id": 6,
+      "name": "Богачева Евгения",
+      "nickname": "?",
+      "age": 19,
+      "role": "media",
+      "zodiacSign": "Дева"
+    },
+    {
+      "id": 7,
+      "name": "Доморацкая Елизавета",
+      "nickname": "а ниче тот факт",
+      "age": 19,
+      "role": "aep",
+      "zodiacSign": "Весы"
+    },
+    {
+      "id": 8,
+      "name": "Жуков Даниил",
+      "nickname": "прораб",
+      "age": 19,
+      "role": "aep",
+      "zodiacSign": "Скорпион"
+    },
+    {
+      "id": 9,
+      "name": "Завадская Софья",
+      "nickname": "za наших",
+      "age": 20,
+      "role": "creator",
+      "zodiacSign": "Стрелец"
+    },
+    {
+      "id": 10,
+      "name": "Ишин Марк",
+      "nickname": "?",
+      "age": 18,
+      "role": "creator",
+      "zodiacSign": "Козерог"
+    },
+    {
+      "id": 11,
+      "name": "Каргаполов Максим",
+      "nickname": "krasnodar sr.",
+      "age": 20,
+      "role": "design",
+      "zodiacSign": "Водолей"
+    },
+    {
+      "id": 12,
+      "name": "Коканова Екатерина",
+      "nickname": "пока кать",
+      "age": 21,
+      "role": "creator",
+      "zodiacSign": "Рыбы"
+    }
+  ]
+}
