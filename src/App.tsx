@@ -5,26 +5,26 @@ import {
   Container,
   Typography,
   Button,
-  Dialog,
-  DialogTitle,
-  DialogContent,
-  IconButton,
 } from '@mui/material';
-import { RecordForm } from './components/RecordForm';
 import { RecordTable } from './components/RecordTable';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import axios from 'axios';
 import { type Record } from './types/Record';
-import CloseIcon from '@mui/icons-material/Close';
+import AddIcon from '@mui/icons-material/Add';
+import { AddColumnForm } from './components/AddColumnForm';
+import { recordStore } from './store/RecordStore';
+import { AddRecordForm } from './components/AddRecordForm';
+import { observer } from 'mobx-react-lite';
+import { api } from './api/api';
 
 const PAGE_SIZE = 5;
 
-export default function App() {
+export const App = observer(() => {
   const [records, setRecords] = useState<Record[]>([]);
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
+  const [dialogOpen, setDialogOpen] = useState(false);
 
   useEffect(() => {
     setRecords([]);
@@ -36,9 +36,10 @@ export default function App() {
 
   const loadMoreRecords = async (nextPage = page, isFirst = false) => {
     setLoading(true);
-    const res = await axios.get<Record[]>(
-      `http://localhost:3001/records?_page=${nextPage}&_limit=${PAGE_SIZE}`
-    );
+    const res = await api.getRecordsPaged(nextPage, PAGE_SIZE);
+    if (isFirst && res.data.length > 0) {
+      recordStore.syncColumnsWithRecords(res.data);
+    }
     setRecords((prev) => (isFirst ? res.data : [...prev, ...res.data]));
     setPage(nextPage + 1);
     if (res.data.length < PAGE_SIZE) setHasMore(false);
@@ -47,6 +48,10 @@ export default function App() {
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  const columnCount = recordStore.columns.filter(
+    (col) => col.key !== 'id'
+  ).length;
 
   return (
     <Container
@@ -58,7 +63,7 @@ export default function App() {
         alignItems: 'center',
       }}
     >
-      <Typography variant="h2" gutterBottom sx={{ fontWeight: '500' }}>
+      <Typography variant="h2" sx={{ fontWeight: '500', mb: 4 }}>
         Состав ORG.COM
       </Typography>
       <Box
@@ -68,7 +73,6 @@ export default function App() {
           overflow: 'auto',
           border: '1px solid #ddd',
           borderRadius: 2,
-          mt: 2,
         }}
       >
         <InfiniteScroll
@@ -87,46 +91,43 @@ export default function App() {
           <RecordTable records={records} />
         </InfiniteScroll>
       </Box>
-
-      <Button variant="contained" onClick={handleOpen} sx={{ mt: 5 }}>
-        Добавить запись
-      </Button>
-      <Dialog open={open} onClose={handleClose} maxWidth="xs" fullWidth>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            position: 'relative',
-          }}
+      <Typography
+        sx={{ mt: 1, fontSize: 16, color: 'gray', textAlign: 'center' }}
+      >
+        {columnCount+1} / {recordStore.maxColumns} колонок
+      </Typography>
+      <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={handleOpen}
         >
-          <IconButton
-            aria-label="close"
-            onClick={handleClose}
-            sx={{
-              position: 'absolute',
-              right: 8,
-              top: 8,
-              color: (theme) => theme.palette.grey[500],
-            }}
-          >
-            <CloseIcon />
-          </IconButton>
-          <DialogTitle
-            sx={{ fontWeight: 500, width: '100%', textAlign: 'center' }}
-          >
-            Добавить запись
-          </DialogTitle>
-          <DialogContent sx={{ width: '90%' }}>
-            <RecordForm
-              onSuccess={(newRecord) => {
-                setRecords((prev) => [...prev, newRecord]);
-                handleClose();
-              }}
-            />
-          </DialogContent>
-        </Box>
-      </Dialog>
+          Добавить запись
+        </Button>
+        <AddRecordForm
+          open={open}
+          onClose={handleClose}
+          onSuccess={(newRecord) => setRecords((prev) => [...prev, newRecord])}
+        />
+        <Button
+          variant="contained"
+          startIcon={<AddIcon />}
+          onClick={() => setDialogOpen(true)}
+          disabled={columnCount >= recordStore.maxColumns}
+        >
+          Добавить колонку
+        </Button>
+        <AddColumnForm
+          open={dialogOpen}
+          onClose={() => setDialogOpen(false)}
+          onAdd={(label) => {
+            recordStore.addColumn(label);
+            setDialogOpen(false);
+          }}
+        />
+      </Box>
     </Container>
   );
-}
+});
+
+export default App;
