@@ -5,133 +5,96 @@
       "name": "Жданов Вадим",
       "nickname": "говмак",
       "age": 20,
-      "role": "smm"
+      "role": "smm",
+      "zodiacSign": "Овен"
     },
     {
       "id": 2,
       "name": "Лялина Кристина",
       "nickname": "кокаколик",
       "age": 20,
-      "role": "smm"
+      "role": "smm",
+      "zodiacSign": "Телец"
     },
     {
       "id": 3,
       "name": "Шилов Евгений",
       "nickname": "рыжий дьявол",
       "age": 20,
-      "role": "design"
+      "role": "design",
+      "zodiacSign": "Близнецы"
     },
     {
       "id": 4,
       "name": "Асаков Максим",
       "nickname": "потеряшка",
       "age": 19,
-      "role": "smm"
+      "role": "smm",
+      "zodiacSign": "Рак"
     },
     {
       "id": 5,
       "name": "Берюзовская Ярослава",
       "nickname": "?",
       "age": 18,
-      "role": "creator"
+      "role": "creator",
+      "zodiacSign": "Лев"
     },
     {
       "id": 6,
       "name": "Богачева Евгения",
       "nickname": "?",
       "age": 19,
-      "role": "media"
+      "role": "media",
+      "zodiacSign": "Дева"
     },
     {
       "id": 7,
       "name": "Доморацкая Елизавета",
       "nickname": "а ниче тот факт",
       "age": 19,
-      "role": "aep"
+      "role": "aep",
+      "zodiacSign": "Весы"
     },
     {
       "id": 8,
       "name": "Жуков Даниил",
       "nickname": "прораб",
       "age": 19,
-      "role": "aep"
+      "role": "aep",
+      "zodiacSign": "Скорпион"
     },
     {
       "id": 9,
       "name": "Завадская Софья",
       "nickname": "za наших",
       "age": 20,
-      "role": "creator"
+      "role": "creator",
+      "zodiacSign": "Стрелец"
     },
     {
       "id": 10,
       "name": "Ишин Марк",
       "nickname": "?",
       "age": 18,
-      "role": "creator"
+      "role": "creator",
+      "zodiacSign": "Козерог"
     },
     {
       "id": 11,
       "name": "Каргаполов Максим",
       "nickname": "krasnodar sr.",
       "age": 20,
-      "role": "design"
+      "role": "design",
+      "zodiacSign": "Водолей"
     },
     {
       "id": 12,
       "name": "Коканова Екатерина",
       "nickname": "пока кать",
       "age": 21,
-      "role": "creator"
-    },
-    {
-      "name": "mmm",
-      "nickname": "mmmm",
-      "age": 18,
-      "role": "design",
-      "id": 13
-    },
-    {
-      "name": "sAAA",
-      "nickname": "aa",
-      "age": 18,
-      "role": "design",
-      "id": 14
-    },
-    {
-      "name": "ssss",
-      "nickname": "ssss",
-      "age": 18,
-      "role": "design",
-      "id": 15
-    },
-    {
-      "name": "fkfkf",
-      "nickname": "fff",
-      "age": 23,
-      "role": "admin",
-      "id": 16
-    },
-    {
-      "name": "mmm",
-      "nickname": "mmmm",
-      "age": 18,
-      "role": "aep",
-      "id": 17
-    },
-    {
-      "name": "hhh",
-      "nickname": "jjjjj",
-      "age": 18,
-      "role": "media",
-      "id": 18
-    },
-    {
-      "name": "Никитос",
-      "nickname": "вввв",
-      "age": 24,
-      "role": "ceo",
-      "id": 19
+      "role": "creator",
+      "zodiacSign": "Рыбы"
     }
   ]
 }

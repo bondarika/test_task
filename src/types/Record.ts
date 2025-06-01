@@ -1,4 +1,5 @@
 ﻿import type { Role } from "./Role";
+import type { ZodiacSign } from "./ZodiacSign";
 
 export interface Record {
   id: number;
@@ -6,4 +7,5 @@ export interface Record {
   nickname: string;
   age: number;
   role: Role;
+  zodiacSign: ZodiacSign;
 }

@@ -17,15 +17,10 @@ export function RecordForm({ onSuccess }: RecordFormProps) {
     register,
     handleSubmit,
     reset,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<FormData>({
     resolver: zodResolver(recordSchema),
-    defaultValues: {
-      name: '',
-      nickname: '',
-      age: 18,
-      role: 'design',
-    },
+    mode: 'onChange',
   });
 
   const onSubmit = async (data: FormData) => {
@@ -34,36 +29,40 @@ export function RecordForm({ onSuccess }: RecordFormProps) {
     reset();
   };
 
-  const onCancel = () => {
-    reset();
-  };
-
   return (
     <Box
       component="form"
       onSubmit={handleSubmit(onSubmit)}
-      sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 4 }}
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 2,
+        marginTop: 2,
+      }}
     >
       <TextField
         label="Имя"
         {...register('name')}
+        required
         error={!!errors.name}
         helperText={errors.name?.message}
       />
       <TextField
         label="Никнейм"
+        required
         {...register('nickname')}
         error={!!errors.nickname}
         helperText={errors.nickname?.message}
       />
       <TextField
-        type="number"
+        type="text"
         label="Возраст"
+        required
         {...register('age', { valueAsNumber: true })}
         error={!!errors.age}
         helperText={errors.age?.message}
       />
-      <TextField select label="Роль" {...register('role')}>
+      <TextField select label="Роль" {...register('role')} required>
         {(
           ['design', 'aep', 'media', 'admin', 'creator', 'smm', 'ceo'] as Role[]
         ).map((role) => (
@@ -73,12 +72,37 @@ export function RecordForm({ onSuccess }: RecordFormProps) {
         ))}
       </TextField>
 
-      <Box sx={{ display: 'flex', gap: 2 }}>
-        <Button type="submit" variant="contained">
+      <TextField
+        select
+        label="Знак зодиака"
+        {...register('zodiacSign')}
+        required
+      >
+        {(
+          [
+            'Овен',
+            'Телец',
+            'Близнецы',
+            'Рак',
+            'Лев',
+            'Дева',
+            'Весы',
+            'Скорпион',
+            'Стрелец',
+            'Козерог',
+            'Водолей',
+            'Рыбы',
+          ] as const
+        ).map((sign) => (
+          <MenuItem key={sign} value={sign}>
+            {sign}
+          </MenuItem>
+        ))}
+      </TextField>
+
+      <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+        <Button type="submit" variant="contained" disabled={!isValid}>
           Сохранить
-        </Button>
-        <Button variant="outlined" onClick={onCancel}>
-          Отмена
         </Button>
       </Box>
     </Box>
