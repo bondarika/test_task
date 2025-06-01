@@ -95,30 +95,6 @@
       "age": 21,
       "role": "creator",
       "zodiacSign": "Рыбы"
-    },
-    {
-      "name": "дарья",
-      "nickname": "яяя",
-      "age": 19,
-      "role": "design",
-      "zodiacSign": "Лев",
-      "id": 13
-    },
-    {
-      "name": "dis",
-      "nickname": "22",
-      "age": 20,
-      "role": "design",
-      "zodiacSign": "Рак",
-      "id": 14
-    },
-    {
-      "name": "цц",
-      "nickname": "цц",
-      "age": 20,
-      "role": "design",
-      "zodiacSign": "Лев",
-      "id": 15
     }
   ]
 }
