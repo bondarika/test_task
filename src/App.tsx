@@ -120,7 +120,7 @@ export default function App() {
           <DialogContent sx={{ width: '90%' }}>
             <RecordForm
               onSuccess={(newRecord) => {
-                setRecords((prev) => [newRecord, ...prev]);
+                setRecords((prev) => [...prev, newRecord]);
                 handleClose();
               }}
             />
