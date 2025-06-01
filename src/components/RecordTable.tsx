@@ -1,44 +1,66 @@
-﻿import {
+﻿import { observer } from 'mobx-react-lite';
+import {
   Table,
   TableBody,
   TableCell,
   TableHead,
   TableRow,
   TableContainer,
+  IconButton,
+  Box
 } from '@mui/material';
+import DeleteIcon from '@mui/icons-material/Delete';
 import { type Record } from '../types/Record';
+import { recordStore } from '../store/RecordStore';
 
-export function RecordTable({ records }: { records: Record[] }) {
+export const RecordTable = observer(({ records }: { records: Record[] }) => {
   return (
-    <TableContainer sx={{ boxShadow: 3 }}>
-      <Table>
-        <TableHead>
-          <TableRow sx={{ backgroundColor: '#f5f5f5' }}>
-            <TableCell sx={{ fontWeight: 'bold' }}>Имя</TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }}>Никнейм</TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }}>Возраст</TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }}>Роль</TableCell>
-            <TableCell sx={{ fontWeight: 'bold' }}>Знак зодиака</TableCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {records.map((rec, index) => (
-            <TableRow
-              key={rec.id}
-              sx={{
-                backgroundColor: index % 2 === 0 ? '#fafafa' : 'white',
-                '&:last-child td': { borderBottom: 0 },
-              }}
-            >
-              <TableCell>{rec.name}</TableCell>
-              <TableCell>{rec.nickname}</TableCell>
-              <TableCell>{rec.age}</TableCell>
-              <TableCell>{rec.role}</TableCell>
-              <TableCell>{rec.zodiacSign}</TableCell>
+    <Box sx={{ display: 'flex', flexDirection: 'column' }}>
+      <TableContainer sx={{ boxShadow: 3 }}>
+        <Table>
+          <TableHead>
+            <TableRow sx={{ backgroundColor: '#f5f5f5' }}>
+              {recordStore.columns
+                .map((col, idx) => (
+                  <TableCell
+                    key={col.key}
+                    sx={{ fontWeight: 'bold', position: 'relative' }}
+                  >
+                    {col.label}
+                    {col.key !== 'id' &&
+                      recordStore.columns.length > recordStore.minColumns && (
+                        <IconButton
+                          size="small"
+                          onClick={() => recordStore.deleteColumn(idx)}
+                          sx={{ ml: 1 }}
+                          aria-label="Удалить колонку"
+                        >
+                          <DeleteIcon fontSize="small" />
+                        </IconButton>
+                      )}
+                  </TableCell>
+                ))}
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {records.map((rec, index) => (
+              <TableRow
+                key={rec.id}
+                sx={{
+                  backgroundColor: index % 2 === 0 ? '#fafafa' : 'white',
+                  '&:last-child td': { borderBottom: 0 },
+                }}
+              >
+                {recordStore.columns.map((col) => (
+                  <TableCell key={col.key}>
+                    {rec[col.key as keyof Record] ?? ''}
+                  </TableCell>
+                ))}
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </Box>
   );
-}
+});
