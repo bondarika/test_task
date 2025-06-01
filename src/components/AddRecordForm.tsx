@@ -185,7 +185,7 @@ export const AddRecordForm = observer(
               disabled={!isValid}
               sx={{ minWidth: 140 }}
             >
-              Сохранить
+              Добавить
             </Button>
           </Box>
         </Box>

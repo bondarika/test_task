@@ -63,13 +63,13 @@ export function AddColumnForm({ open, onClose, onAdd }: Props) {
             pb: 1,
           }}
         >
-          Добавить колонку
+          Добавить поле
         </DialogTitle>
         <DialogContent sx={{ width: '90%', p: 0, mb: 2 }}>
           <TextField
             autoFocus
             required
-            label="Название колонки"
+            label="Название поля"
             fullWidth
             value={label}
             onChange={(e) => setLabel(e.target.value)}

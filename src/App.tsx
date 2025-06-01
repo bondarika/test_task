@@ -8,13 +8,13 @@ import {
 } from '@mui/material';
 import { RecordTable } from './components/RecordTable';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import axios from 'axios';
 import { type Record } from './types/Record';
 import AddIcon from '@mui/icons-material/Add';
 import { AddColumnForm } from './components/AddColumnForm';
 import { recordStore } from './store/RecordStore';
 import { AddRecordForm } from './components/AddRecordForm';
 import { observer } from 'mobx-react-lite';
+import { api } from './api/api';
 
 const PAGE_SIZE = 5;
 
@@ -36,11 +36,9 @@ export const App = observer(() => {
 
   const loadMoreRecords = async (nextPage = page, isFirst = false) => {
     setLoading(true);
-    const res = await axios.get<Record[]>(
-      `http://localhost:3001/records?_page=${nextPage}&_limit=${PAGE_SIZE}`
-    );
+    const res = await api.getRecordsPaged(nextPage, PAGE_SIZE);
     if (isFirst && res.data.length > 0) {
-      recordStore.syncColumnsWithRecords(res.data.map((r) => ({ ...r })));
+      recordStore.syncColumnsWithRecords(res.data);
     }
     setRecords((prev) => (isFirst ? res.data : [...prev, ...res.data]));
     setPage(nextPage + 1);
@@ -96,7 +94,7 @@ export const App = observer(() => {
       <Typography
         sx={{ mt: 1, fontSize: 16, color: 'gray', textAlign: 'center' }}
       >
-        {columnCount} / {recordStore.maxColumns} колонок
+        {columnCount+1} / {recordStore.maxColumns} колонок
       </Typography>
       <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
         <Button

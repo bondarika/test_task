@@ -7,7 +7,7 @@ import {
   TableRow,
   TableContainer,
   IconButton,
-  Box
+  Box,
 } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { type Record } from '../types/Record';
@@ -20,26 +20,25 @@ export const RecordTable = observer(({ records }: { records: Record[] }) => {
         <Table>
           <TableHead>
             <TableRow sx={{ backgroundColor: '#f5f5f5' }}>
-              {recordStore.columns
-                .map((col, idx) => (
-                  <TableCell
-                    key={col.key}
-                    sx={{ fontWeight: 'bold', position: 'relative' }}
-                  >
-                    {col.label}
-                    {col.key !== 'id' &&
-                      recordStore.columns.length > recordStore.minColumns && (
-                        <IconButton
-                          size="small"
-                          onClick={() => recordStore.deleteColumn(idx)}
-                          sx={{ ml: 1 }}
-                          aria-label="Удалить колонку"
-                        >
-                          <DeleteIcon fontSize="small" />
-                        </IconButton>
-                      )}
-                  </TableCell>
-                ))}
+              {recordStore.columns.map((col, idx) => (
+                <TableCell
+                  key={col.key}
+                  sx={{ fontWeight: 'bold', position: 'relative' }}
+                >
+                  {col.label}
+                  {col.key !== 'id' &&
+                    recordStore.columns.length > recordStore.minColumns && (
+                      <IconButton
+                        size="small"
+                        onClick={() => recordStore.deleteColumn(idx)}
+                        sx={{ ml: 1 }}
+                        aria-label="Удалить "
+                      >
+                        <DeleteIcon fontSize="small" />
+                      </IconButton>
+                    )}
+                </TableCell>
+              ))}
             </TableRow>
           </TableHead>
           <TableBody>
