@@ -113,8 +113,9 @@ export const App = observer(() => {
           variant="contained"
           startIcon={<AddIcon />}
           onClick={() => setDialogOpen(true)}
-          disabled={columnCount >= recordStore.maxColumns}
+          disabled={(columnCount+1) >= recordStore.maxColumns}
         >
+
           Добавить колонку
         </Button>
         <AddColumnForm
