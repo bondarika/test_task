@@ -8,4 +8,7 @@ export const api = {
     axios.get(`${API_URL}/records?_page=${page}&_limit=${limit}`),
   updateRecord: (id: string | number, data: Record<string, unknown>) =>
     axios.put(`${API_URL}/records/${id}`, data),
+  async deleteRecord(id: number) {
+    return fetch(`${API_URL}/records/${id}`, { method: 'DELETE' });
+  },
 };

@@ -34,6 +34,15 @@ export const App = observer(() => {
     // eslint-disable-next-line
   }, []);
 
+  const handleDelete = async (id: number) => {
+    try {
+      await recordStore.deleteRecord(id);
+      setRecords((prev) => prev.filter((rec) => rec.id !== id));
+    } catch (e) {
+      console.error('Failed to delete record:', e);
+    }
+  };
+
   const loadMoreRecords = async (nextPage = page, isFirst = false) => {
     setLoading(true);
     const res = await api.getRecordsPaged(nextPage, PAGE_SIZE);
@@ -88,13 +97,17 @@ export const App = observer(() => {
           }
           scrollableTarget="scrollable-table-box"
         >
-          <RecordTable records={records} />
+          <RecordTable
+            records={records}
+            onDelete={handleDelete}
+            // onUpdate={handleUpdate}
+          />
         </InfiniteScroll>
       </Box>
       <Typography
         sx={{ mt: 1, fontSize: 16, color: 'gray', textAlign: 'center' }}
       >
-        {columnCount+1} / {recordStore.maxColumns} колонок
+        {columnCount + 1} / {recordStore.maxColumns} колонок
       </Typography>
       <Box sx={{ mt: 3, display: 'flex', gap: 2 }}>
         <Button
@@ -113,9 +126,8 @@ export const App = observer(() => {
           variant="contained"
           startIcon={<AddIcon />}
           onClick={() => setDialogOpen(true)}
-          disabled={(columnCount+1) >= recordStore.maxColumns}
+          disabled={columnCount + 1 >= recordStore.maxColumns}
         >
-
           Добавить колонку
         </Button>
         <AddColumnForm

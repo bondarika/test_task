@@ -16,6 +16,7 @@ const DEFAULT_COLUMNS = [
 export class RecordStore {
   columns = DEFAULT_COLUMNS.slice();
   labelsMap: Record<string, string> = {};
+  records: Record<string, unknown>[] = [];
 
   constructor() {
     makeAutoObservable(this);
@@ -87,6 +88,15 @@ export class RecordStore {
       } catch (e) {
         console.error('Failed to delete column from records:', e);
       }
+    }
+  }
+
+  async deleteRecord(id: number) {
+    try {
+      await api.deleteRecord(id);
+      this.records = this.records.filter((rec) => rec.id !== id); 
+    } catch (e) {
+      console.error('Failed to delete record:', e);
     }
   }
 
