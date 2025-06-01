@@ -11,7 +11,7 @@ import {
   IconButton,
 } from '@mui/material';
 import { RecordForm } from './components/RecordForm';
-import { RecordTable } from './components/RecordTable/RecordTable';
+import { RecordTable } from './components/RecordTable';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import axios from 'axios';
 import { type Record } from './types/Record';

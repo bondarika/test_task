@@ -6,7 +6,7 @@
   TableRow,
   TableContainer,
 } from '@mui/material';
-import { type Record } from '../../types/Record';
+import { type Record } from '../types/Record';
 
 export function RecordTable({ records }: { records: Record[] }) {
   return (

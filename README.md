@@ -1,54 +1,25 @@
-# React + TypeScript + Vite
+Это тестовое задание представляет собой веб-приложение, реализованное на **React + TypeScript**, с динамически подгружаемой таблицей записей, формой добавления новых записей и валидацией данных.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Стек технологий
 
-Currently, two official plugins are available:
+- **React** + **TypeScript**
+- **Vite** — сборщик
+- **React Hook Form** + **Zod** — для работы с формой и валидацией
+- **axios** — для работы с HTTP-запросами
+- **json-server** — имитация REST API
+- **@mui/material** — UI-библиотека (Material UI)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Быстрый запуск одной командой
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+```bash
+npm run start
 ```
+Запускает одновременно vite и json-server
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Почему не используется state-менеджер
+1. Управление состоянием ограничено локальными сценариями: отображение записей, пагинация, открытие/закрытие модального окна.
+2. Состояние легко организуется на верхнем уровне и передаётся через пропсы, без необходимости кросс-компонентной синхронизации.
+3. Использование useState, useEffect и возможно useMemo/useCallback полностью покрывает все потребности.
+4. Загрузка данных с сервера (требование задания) легко реализуется с помощью локального состояния и axios, без привлечения глобального хранилища.
+5. Добавление внешнего менеджера состояний усложнило бы архитектуру без реальных преимуществ.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
